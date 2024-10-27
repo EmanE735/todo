@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:todo/app_theme.dart';
 import 'package:todo/tabs/settings/settings_tab.dart';
+
 import 'package:todo/tabs/tasks/tasks_tab.dart';
+
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -15,8 +17,9 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
 
   List <Widget> tabs =[
-    SettingsTab(),
     TasksTab(),
+    SettingsTab(),
+    
 
   ];
   int currentTabIndex =0;

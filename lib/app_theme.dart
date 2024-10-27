@@ -27,7 +27,20 @@ class AppTheme{
         color: white
       )
     )
-   )
+   ),
+    textTheme: TextTheme(
+    titleMedium: TextStyle(
+        fontSize: 18,
+        fontWeight: FontWeight.bold,
+        color: AppTheme.primary
+      ),
+      titleSmall: TextStyle(
+          fontSize: 14,
+        fontWeight: FontWeight.w400,
+        color: black
+
+      )
+    )
   
   );
 }
