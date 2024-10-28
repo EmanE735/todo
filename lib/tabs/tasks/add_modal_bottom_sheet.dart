@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:todo/app_theme.dart';
+import 'package:todo/models/task_models.dart';
 import 'package:todo/widgets/defult_elevated_button.dart';
 import 'package:todo/widgets/defult_text_form_filed.dart';
 
@@ -98,5 +99,10 @@ class _AddModalBottomSheetState extends State<AddModalBottomSheet> {
     );
   }
 
-  void addTask() {}
+  void addTask() {
+   TaskModel(title: titleController.text,
+    description: descriptionController.text,
+     date: selectedDate,
+    id: "");
+  }
 }
