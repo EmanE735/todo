@@ -40,7 +40,17 @@ class AppTheme{
         color: black
 
       )
-    )
+    ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(backgroundColor: primary,
+      foregroundColor: white,
+   
+      
+     
+      textStyle: TextStyle(fontSize: 18,fontWeight: FontWeight.w400)
+     
+        
+      ))
   
   );
 }
