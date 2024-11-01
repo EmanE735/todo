@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:todo/app_theme.dart';
 import 'package:todo/models/task_models.dart';
 import 'package:todo/tabs/tasks/task_item.dart';
 import 'package:easy_date_timeline/easy_date_timeline.dart';
+import 'package:todo/tabs/tasks/tasks_provider.dart';
 import 'package:todo/widgets/firebase_function.dart';
 
 class TasksTab extends StatefulWidget {
@@ -13,15 +15,20 @@ class TasksTab extends StatefulWidget {
 }
 
 class _TasksTabState extends State<TasksTab> {
-  List <TaskModel> tasks =[
-
-  ];
+  bool shouldGetTasks=true;
+ 
   @override
   Widget build(BuildContext context) {
-    if (tasks.isEmpty){
-      getTasks();
-    }
+    
     double screenHeight = MediaQuery.sizeOf(context).height;
+
+    TasksProvider tasksProvider =Provider.of<TasksProvider>(context);
+    if (shouldGetTasks){
+       tasksProvider.getTasks();
+       shouldGetTasks=false;
+
+    }
+    
     return Column(
       children: [
         Stack(children: [
@@ -83,20 +90,14 @@ class _TasksTabState extends State<TasksTab> {
         Expanded(
           child: ListView.builder(
             shrinkWrap: true,
-            itemBuilder: (_, index) => TaskItem(tasks[index]),
-            itemCount: tasks.length,
+            itemBuilder: (_, index) => TaskItem(tasksProvider.tasks[index]),
+            itemCount:tasksProvider.tasks.length,
           ),
         ),
       ],
     );
   }
-  Future<void> getTasks()async{
-  tasks=  await FirebaseFunction.getAllTasksFromeFirestore();
-  setState(() {
-    
-  });
-
-  }
+  
 
   
 }

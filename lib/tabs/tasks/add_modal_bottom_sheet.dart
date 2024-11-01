@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 import 'package:todo/app_theme.dart';
 import 'package:todo/models/task_models.dart';
+import 'package:todo/tabs/tasks/tasks_provider.dart';
 import 'package:todo/widgets/defult_elevated_button.dart';
 import 'package:todo/widgets/defult_text_form_filed.dart';
 import 'package:todo/widgets/firebase_function.dart';
@@ -111,6 +113,7 @@ class _AddModalBottomSheetState extends State<AddModalBottomSheet> {
       (){
         
         Navigator.of(context).pop();
+        Provider.of<TasksProvider>(context,listen: false).getTasks();
 
       },
     ).catchError(
