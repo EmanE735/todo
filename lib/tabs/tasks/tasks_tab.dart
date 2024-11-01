@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo/app_theme.dart';
-import 'package:todo/models/task_models.dart';
+
 import 'package:todo/tabs/tasks/task_item.dart';
 import 'package:easy_date_timeline/easy_date_timeline.dart';
 import 'package:todo/tabs/tasks/tasks_provider.dart';
-import 'package:todo/widgets/firebase_function.dart';
+
 
 class TasksTab extends StatefulWidget {
   const TasksTab({super.key});
@@ -53,7 +53,11 @@ class _TasksTabState extends State<TasksTab> {
             child: EasyInfiniteDateTimeLine(
               showTimelineHeader: false,
               firstDate: DateTime.now().subtract(Duration(days: 365)),
-              focusDate: DateTime.now(),
+              focusDate: tasksProvider.selectedDate,
+              onDateChange: (selectedDate){
+                tasksProvider.changeSelectedDate(selectedDate);
+                tasksProvider.getTasks();
+              },
               lastDate: DateTime.now().add(Duration(days: 365)),
               activeColor: AppTheme.white,
               dayProps: EasyDayProps(
@@ -72,6 +76,18 @@ class _TasksTabState extends State<TasksTab> {
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
                           color: AppTheme.primary)),
+                          todayStyle:  DayStyle(
+                      decoration: BoxDecoration(
+                          color: AppTheme.white,
+                          borderRadius: BorderRadius.all(Radius.circular(5))),
+                      dayNumStyle: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                          color: AppTheme.black),
+                      dayStrStyle: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                          color: AppTheme.black)),
                   inactiveDayStyle: DayStyle(
                       decoration: BoxDecoration(
                           color: AppTheme.white,
