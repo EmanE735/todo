@@ -4,6 +4,7 @@ import 'package:todo/app_theme.dart';
 import 'package:todo/models/task_models.dart';
 import 'package:todo/widgets/defult_elevated_button.dart';
 import 'package:todo/widgets/defult_text_form_filed.dart';
+import 'package:todo/widgets/firebase_function.dart';
 
 class AddModalBottomSheet extends StatefulWidget {
   const AddModalBottomSheet({super.key});
@@ -78,7 +79,7 @@ class _AddModalBottomSheetState extends State<AddModalBottomSheet> {
                     lastDate: DateTime.now().add(Duration(days: 365)),
                     initialDate: selectedDate,
                     initialEntryMode: DatePickerEntryMode.calendarOnly);
-                if (dateTime != null) {
+                if (dateTime != null&& selectedDate!=dateTime) {
                   selectedDate = dateTime;
                   setState(() {});
                 }
@@ -100,9 +101,23 @@ class _AddModalBottomSheetState extends State<AddModalBottomSheet> {
   }
 
   void addTask() {
-   TaskModel(title: titleController.text,
+  TaskModel task= TaskModel(title: titleController.text,
     description: descriptionController.text,
      date: selectedDate,
     id: "");
+    FirebaseFunction.addTaskToFirestore(task).timeout(
+      Duration(microseconds: 100),
+      onTimeout:
+      (){
+        
+        Navigator.of(context).pop();
+
+      },
+    ).catchError(
+      (error){
+        print(error);
+
+      },
+    );
   }
 }
