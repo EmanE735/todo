@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo/app_theme.dart';
+import 'package:todo/auth/login_screen.dart';
+import 'package:todo/auth/register_sreen.dart';
 import 'package:todo/home_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:todo/tabs/tasks/tasks_provider.dart';
@@ -26,6 +28,8 @@ class TodoApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       routes: {
         HomeScreen.routeName : (_) => HomeScreen(),
+        LoginScreen.routeName : (_) => LoginScreen(),
+        RegisterScreen.routeName : (_) => RegisterScreen(),
 
       },
       initialRoute: HomeScreen.routeName,
