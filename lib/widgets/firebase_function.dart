@@ -26,5 +26,12 @@ class FirebaseFunction {
    return taskCollection.doc(taskId).delete();
 
   }
+
+  static Future<void> updateTask(String taskId, TaskModel updatedTask)async{
+      CollectionReference<TaskModel> taskCollection =getTasksCollection();
+      DocumentReference<TaskModel> doc=taskCollection.doc(taskId);
+      return doc.update(updatedTask.toJson());
+          
+  }
 }
 

@@ -39,13 +39,15 @@ class _TasksTabState extends State<TasksTab> {
           ),
           PositionedDirectional(
             start: 20,
-            top: 40,
-            child: Text(
-              "ToDo List",
-              style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    color: AppTheme.white,
-                    fontSize: 22,
-                  ),
+            
+            child: SafeArea(
+              child: Text(
+                "ToDo List",
+                style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      color: AppTheme.white,
+                      fontSize: 22,
+                    ),
+              ),
             ),
           ),
           Padding(
